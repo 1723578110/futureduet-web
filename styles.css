@@ -11,7 +11,7 @@
   --blue: #315f8a;
   --blue-soft: #e6edf4;
   --yellow-soft: #fff2c9;
-  --max-width: 1180px;
+  --max-width: 1060px;
 }
 
 * {
@@ -32,7 +32,7 @@ body {
   background: var(--page);
   font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 17px;
-  line-height: 1.62;
+  line-height: 1.58;
   letter-spacing: 0;
 }
 
@@ -107,7 +107,7 @@ nav a:focus-visible {
 .hero-inner {
   width: min(var(--max-width), calc(100% - 48px));
   margin: 0 auto;
-  padding: 78px 0 38px;
+  padding: 70px 0 34px;
   text-align: center;
 }
 
@@ -132,7 +132,7 @@ h1 {
   max-width: 1080px;
   margin: 0 auto 28px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 56px;
+  font-size: 50px;
   font-weight: 520;
   line-height: 1.08;
 }
@@ -186,7 +186,7 @@ sup {
   max-width: 1000px;
   margin: 0 auto;
   color: var(--ink-soft);
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .affiliations p {
@@ -196,7 +196,7 @@ sup {
 .affiliations .author-notes {
   flex-basis: 100%;
   margin-top: 6px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .hero-actions {
@@ -243,9 +243,9 @@ sup {
 }
 
 .hero-figure {
-  width: min(1320px, calc(100% - 24px));
-  margin: 12px auto 0;
-  padding-bottom: 32px;
+  width: min(960px, calc(100% - 48px));
+  margin: 8px auto 0;
+  padding-bottom: 42px;
 }
 
 .hero-figure img {
@@ -253,16 +253,17 @@ sup {
 }
 
 figcaption {
-  margin-top: 12px;
+  margin-top: 14px;
   color: var(--ink-soft);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
+  text-align: center;
 }
 
 .section {
   width: min(var(--max-width), calc(100% - 48px));
   margin: 0 auto;
-  padding: 86px 0;
+  padding: 74px 0;
 }
 
 .section + .section {
@@ -270,21 +271,21 @@ figcaption {
 }
 
 .section-heading {
-  max-width: 780px;
-  margin-bottom: 42px;
+  max-width: 760px;
+  margin-bottom: 34px;
 }
 
 .section-heading > p:last-child {
   margin-bottom: 0;
   color: var(--ink-soft);
-  font-size: 19px;
+  font-size: 18px;
 }
 
 .split-heading {
   display: grid;
   max-width: none;
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-  gap: 72px;
+  gap: 56px;
   align-items: end;
 }
 
@@ -299,7 +300,7 @@ figcaption {
 }
 
 .role {
-  padding: 30px 32px 26px;
+  padding: 30px 32px 32px;
   border-top: 4px solid;
   background: var(--paper);
 }
@@ -324,24 +325,6 @@ figcaption {
   color: var(--ink-soft);
 }
 
-.role ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 0;
-  margin: 22px 0 0;
-  list-style: none;
-}
-
-.role li {
-  padding: 5px 9px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  color: var(--ink-soft);
-  font-size: 13px;
-  font-weight: 650;
-}
-
 .join-symbol {
   display: grid;
   place-items: center;
@@ -351,11 +334,12 @@ figcaption {
 }
 
 .principle {
-  margin: 28px 0 0;
-  padding: 21px 26px;
-  border-left: 4px solid var(--teal);
-  background: var(--teal-soft);
-  font-size: 18px;
+  max-width: 780px;
+  margin: 26px auto 0;
+  color: var(--teal);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  text-align: center;
 }
 
 .method-section,
@@ -374,48 +358,15 @@ figcaption {
 }
 
 .architecture-figure {
-  width: min(1050px, 100%);
+  width: min(820px, 100%);
   margin: 0 auto;
-}
-
-.method-notes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 36px;
-  margin-top: 44px;
-}
-
-.method-notes > div {
-  padding-top: 18px;
-  border-top: 1px solid var(--line);
-}
-
-.step-number {
-  display: grid;
-  width: 30px;
-  height: 30px;
-  margin-bottom: 15px;
-  place-items: center;
-  color: #fff;
-  background: var(--teal);
-  font-size: 13px;
-  font-weight: 760;
-}
-
-.method-notes h3 {
-  font-size: 18px;
-}
-
-.method-notes p {
-  margin-bottom: 0;
-  color: var(--ink-soft);
-  font-size: 15px;
 }
 
 .metric-band {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-bottom: 58px;
+  max-width: 980px;
+  margin: 0 auto 54px;
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
   background: var(--paper);
@@ -460,8 +411,8 @@ figcaption {
 
 .result-block {
   display: grid;
-  grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
-  gap: 50px;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+  gap: 42px;
   align-items: center;
   margin-bottom: 64px;
 }
@@ -471,23 +422,26 @@ figcaption {
 }
 
 .compact-figure {
-  max-width: 690px;
+  max-width: 560px;
   margin-left: auto;
 }
 
 .landscape-figure {
-  margin: 0 auto 64px;
+  width: min(860px, 100%);
+  margin: 0 auto 60px;
 }
 
 .failure-band {
+  width: min(900px, 100%);
+  margin: 0 auto;
   padding: 34px 0 0;
   border-top: 1px solid var(--line);
 }
 
 .failure-copy {
   display: grid;
-  grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1.45fr);
-  column-gap: 46px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  column-gap: 40px;
   align-items: start;
   margin-bottom: 24px;
 }
@@ -513,17 +467,22 @@ figcaption {
 
 .evidence-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.65fr);
-  gap: 28px;
+  grid-template-columns: minmax(0, 1.38fr) minmax(260px, 0.62fr);
+  gap: 24px;
   align-items: start;
+  width: min(900px, 100%);
+  margin: 0 auto;
 }
 
 .heatmap-figure {
-  max-width: 420px;
+  max-width: 350px;
   justify-self: end;
 }
 
 .citation-section pre {
+  max-width: 900px;
+  margin-right: auto;
+  margin-left: auto;
   overflow-x: auto;
   padding: 26px;
   border: 1px solid var(--line);
@@ -550,16 +509,8 @@ figcaption {
   border-color: var(--teal);
 }
 
-.citation-note {
-  margin-bottom: 0;
-  color: var(--ink-soft);
-  font-size: 13px;
-}
-
 footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
+  display: block;
   padding: 30px max(24px, calc((100% - var(--max-width)) / 2));
   border-top: 1px solid var(--line);
   color: var(--ink-soft);
@@ -652,7 +603,7 @@ footer p {
   }
 
   .hero-figure {
-    width: 100%;
+    width: calc(100% - 30px);
   }
 
   .hero-figure img {
@@ -669,8 +620,7 @@ footer p {
     padding: 64px 0;
   }
 
-  .role-grid,
-  .method-notes {
+  .role-grid {
     grid-template-columns: 1fr;
   }
 
@@ -684,10 +634,6 @@ footer p {
 
   .role {
     padding: 24px 22px;
-  }
-
-  .method-notes {
-    gap: 24px;
   }
 
   .metric {
@@ -705,9 +651,6 @@ footer p {
     padding: 24px 18px;
   }
 
-  footer p + p {
-    margin-top: 6px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
