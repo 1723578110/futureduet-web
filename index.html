@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FutureDuet decouples observation access from future supervision across main and wrist views in World Action Models.">
+  <meta name="theme-color" content="#f6f7f4">
+  <title>FutureDuet | World Action Models</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="FutureDuet home">
+      <span class="wordmark-mark" aria-hidden="true">FD</span>
+      <span>FutureDuet</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#insight">Insight</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#citation">Citation</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="paper-title">
+      <div class="hero-inner">
+        <p class="eyebrow">Preprint · World Action Models</p>
+        <h1 id="paper-title"><span>FutureDuet:</span> Decoupling Observation Access from Future Supervision in World Action Models</h1>
+
+        <div class="authors" aria-label="Authors">
+          <a href="#affiliations">Jie Wu<sup>1,*</sup></a>
+          <a href="#affiliations">Yuzhi Huang<sup>1</sup></a>
+          <a href="#affiliations">Junqi Liu<sup>2</sup></a>
+          <a href="#affiliations">Weichen Zhang<sup>1</sup></a>
+          <a href="#affiliations">Haibin Huang<sup>2</sup></a>
+          <a href="#affiliations">Yin Chen<sup>2</sup></a>
+          <a href="#affiliations">Jingyan Jiang<sup>3,†</sup></a>
+          <a href="#affiliations">Chi Zhang<sup>2,†</sup></a>
+        </div>
+
+        <div class="affiliations" id="affiliations">
+          <p><sup>1</sup> Tsinghua University</p>
+          <p><sup>2</sup> TeleAI, China Telecom</p>
+          <p><sup>3</sup> Shenzhen Technology University</p>
+          <p class="author-notes"><sup>†</sup> Corresponding authors. <sup>*</sup> Work done during an internship at TeleAI.</p>
+        </div>
+
+        <div class="hero-actions" aria-label="Paper resources">
+          <a class="button button-secondary" href="assets/FutureDuet.pdf" target="_blank" rel="noopener">Paper PDF</a>
+          <a class="button button-primary" href="#citation">BibTeX</a>
+        </div>
+      </div>
+
+      <figure class="hero-figure">
+        <img src="assets/images/view-modeling.png" alt="Comparison between a unified future objective and FutureDuet's view-specific future modeling" width="2212" height="810">
+        <figcaption>Both views remain available to the policy. FutureDuet decouples their supervision so each stream can model the form of future exposed by its camera frame.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section insight-section" id="insight" aria-labelledby="insight-title">
+      <div class="section-heading">
+        <p class="section-index">01 · Insight</p>
+        <h2 id="insight-title">One policy, two predictive roles</h2>
+        <p>Main and wrist cameras complement each other at control time, but their reference frames expose different prediction problems.</p>
+      </div>
+
+      <div class="role-grid">
+        <article class="role role-main">
+          <p class="role-kicker">Stable scene frame</p>
+          <h3>Main view → Task State</h3>
+          <p>Future RGB follows task evolution across the scene. Interaction masks and robot skeletons focus supervision on task objects and robot motion.</p>
+          <ul>
+            <li>Scene-level progress</li>
+            <li>Task-object structure</li>
+            <li>Articulated robot motion</li>
+          </ul>
+        </article>
+        <div class="join-symbol" aria-hidden="true"><span>+</span></div>
+        <article class="role role-wrist">
+          <p class="role-kicker">Moving camera frame</p>
+          <h3>Wrist views → Interaction State</h3>
+          <p>Future latent prediction follows short-horizon interaction changes without requiring pixel reconstruction of rapid viewpoint shifts and self-occlusion.</p>
+          <ul>
+            <li>Relative pose</li>
+            <li>Contact evolution</li>
+            <li>Local object response</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="principle"><strong>Design principle.</strong> Keep complementary observations together for action generation; design their future supervision separately.</p>
+    </section>
+
+    <section class="section method-section" id="method" aria-labelledby="method-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="section-index">02 · Method</p>
+          <h2 id="method-title">Task evolution meets interaction evolution</h2>
+        </div>
+        <p>FutureDuet trains two visual streams with view-specific future objectives. A Duet Interface brings their compact states back together for ActionDiT.</p>
+      </div>
+
+      <figure class="paper-figure architecture-figure">
+        <img src="assets/images/architecture.png" alt="FutureDuet architecture with main-view and wrist-view streams joining ActionDiT" width="1854" height="1217">
+        <figcaption>Auxiliary future predictors are active only during training. At deployment, observed histories are encoded into the two states used for action generation.</figcaption>
+      </figure>
+
+      <div class="method-notes" aria-label="Method summary">
+        <div>
+          <span class="step-number">1</span>
+          <h3>Shape each state</h3>
+          <p>Structured main-view futures emphasize scene-level task evidence; wrist future targets supervise local temporal structure.</p>
+        </div>
+        <div>
+          <span class="step-number">2</span>
+          <h3>Read both states</h3>
+          <p>ActionDiT jointly reads Task State and Interaction State so scene progress and close-range evidence can guide the same action chunk.</p>
+        </div>
+        <div>
+          <span class="step-number">3</span>
+          <h3>Deploy without predictors</h3>
+          <p>The dense heads, V-JEPA teacher, and wrist predictor are removed after training.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section results-section" id="results" aria-labelledby="results-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="section-index">03 · Results</p>
+          <h2 id="results-title">Broad gains, strongest on precise interaction</h2>
+        </div>
+        <p>FutureDuet improves benchmark-scale performance while its largest RoboTwin50 gains appear on tasks whose final success depends on precise contact geometry.</p>
+      </div>
+
+      <div class="metric-band" aria-label="Headline benchmark results">
+        <div class="metric">
+          <strong>94.2<span>%</span></strong>
+          <p>RoboTwin50<br>clean</p>
+        </div>
+        <div class="metric">
+          <strong>94.1<span>%</span></strong>
+          <p>RoboTwin50<br>randomized</p>
+        </div>
+        <div class="metric">
+          <strong>99.2<span>%</span></strong>
+          <p>LIBERO<br>average</p>
+        </div>
+        <div class="metric metric-accent">
+          <strong>+13.9<span> pp</span></strong>
+          <p>Separate future latent<br>over unified RGB</p>
+        </div>
+      </div>
+
+      <div class="result-block">
+        <div class="result-copy">
+          <p class="section-index">Wrist pathway study</p>
+          <h3>Separation helps; temporal supervision helps further</h3>
+          <p>A lightweight separate wrist route reaches 60.9% without future supervision. Holding that deployed route fixed, future RGB reaches 64.1% and future latent supervision reaches 69.7%. All three variants share the same 201.20 ms policy-call latency.</p>
+        </div>
+        <figure class="paper-figure compact-figure">
+          <img src="assets/images/wrist-tradeoff.png" alt="Success and latency trade-off for wrist pathway designs" width="2081" height="1442">
+        </figure>
+      </div>
+
+      <figure class="paper-figure landscape-figure">
+        <img src="assets/images/robotwin-landscape.png" alt="RoboTwin50 task threshold counts and gains on challenging tasks" width="1502" height="539">
+        <figcaption>The benchmark average hides a long tail. The largest gains occur on tasks involving precise terminal interaction, constrained placement, and multi-stage execution.</figcaption>
+      </figure>
+
+      <div class="failure-band">
+        <div class="failure-copy">
+          <p class="section-index">Where difficulty remains</p>
+          <h3>Reaching the object is not the same as completing the interaction</h3>
+          <p>Open Microwave, Hanging Mug, and Turn Switch expose failures after the policy arrives at the relevant region: insufficient opening, a missed hook, or misaligned contact.</p>
+        </div>
+        <img src="assets/images/failure-cases.png" alt="Failure cases for Open Microwave, Hanging Mug, and Turn Switch" width="2264" height="401">
+      </div>
+    </section>
+
+    <section class="section evidence-section" id="evidence" aria-labelledby="evidence-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="section-index">04 · Readout evidence</p>
+          <h2 id="evidence-title">Structured targets shape what actions read</h2>
+        </div>
+        <p>Mask and skeleton supervision produce different, interpretable shifts in action readout rather than merely adding more losses.</p>
+      </div>
+
+      <div class="evidence-grid">
+        <figure class="paper-figure">
+          <img src="assets/images/readout-qualitative.png" alt="Qualitative comparison of action readout under RGB-only and structured supervision" width="1452" height="646">
+          <figcaption>Joint mask-and-skeleton supervision focuses readout on the task-relevant interaction.</figcaption>
+        </figure>
+        <figure class="paper-figure heatmap-figure">
+          <img src="assets/images/readout-heatmap.png" alt="Heatmap of target-specific changes in object and robot readout" width="886" height="625">
+          <figcaption>Masks primarily increase object-region sensitivity; skeletons primarily increase robot-region sensitivity.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section citation-section" id="citation" aria-labelledby="citation-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="section-index">05 · Citation</p>
+          <h2 id="citation-title">Cite FutureDuet</h2>
+        </div>
+        <button class="copy-button" id="copy-bibtex" type="button">Copy BibTeX</button>
+      </div>
+      <pre><code id="bibtex">@misc{wu2026futureduet,
+  title  = {FutureDuet: Decoupling Observation Access from Future Supervision in World Action Models},
+  author = {Jie Wu and Yuzhi Huang and Junqi Liu and Weichen Zhang and Haibin Huang and Yin Chen and Jingyan Jiang and Chi Zhang},
+  year   = {2026},
+  note   = {Preprint}
+}</code></pre>
+      <p class="citation-note">The arXiv identifier will be added after submission.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>FutureDuet · Preprint website</p>
+    <p>Research results shown on this page are reported in the accompanying manuscript.</p>
+  </footer>
+
+  <script src="site.js"></script>
+</body>
+</html>
