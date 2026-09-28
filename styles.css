@@ -243,7 +243,7 @@ sup {
 }
 
 .hero-figure {
-  width: min(960px, calc(100% - 48px));
+  width: min(840px, calc(100% - 96px));
   margin: 8px auto 0;
   padding-bottom: 42px;
 }
@@ -358,7 +358,7 @@ figcaption {
 }
 
 .architecture-figure {
-  width: min(820px, 100%);
+  width: min(760px, 100%);
   margin: 0 auto;
 }
 
@@ -422,17 +422,17 @@ figcaption {
 }
 
 .compact-figure {
-  max-width: 560px;
+  max-width: 520px;
   margin-left: auto;
 }
 
 .landscape-figure {
-  width: min(860px, 100%);
+  width: min(780px, 100%);
   margin: 0 auto 60px;
 }
 
 .failure-band {
-  width: min(900px, 100%);
+  width: min(820px, 100%);
   margin: 0 auto;
   padding: 34px 0 0;
   border-top: 1px solid var(--line);
@@ -470,7 +470,7 @@ figcaption {
   grid-template-columns: minmax(0, 1.38fr) minmax(260px, 0.62fr);
   gap: 24px;
   align-items: start;
-  width: min(900px, 100%);
+  width: min(820px, 100%);
   margin: 0 auto;
 }
 
