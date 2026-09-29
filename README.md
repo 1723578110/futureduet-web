@@ -14,8 +14,7 @@ Then open `http://127.0.0.1:4173/`.
 
 ## Before publishing
 
-1. Add the assigned arXiv identifier and URL to the BibTeX entry.
-2. Optionally replace the bundled PDF link with the public arXiv URL.
-3. Add code or video links only after those resources are public.
+1. The assigned arXiv identifier and URL are included in the BibTeX entry and resource buttons.
+2. Add code or video links only after those resources are public.
 
-The current site has been checked against the 2026-09-28 Overleaf snapshot and intentionally contains no invented arXiv, code, or video links.
+The site has been checked against the 2026-09-28 Overleaf snapshot. The paper is available at [arXiv:2609.34362](https://arxiv.org/abs/2609.34362).
